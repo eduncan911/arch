@@ -34,6 +34,6 @@ echo "Is this an Intel machine?  Install the microcode for it."
 echo ""
 echo "  50-intel-microcode.sh"
 echo ""
-echo "You may reboot at any time."
+echo "And then uncomment the line in /mnt/boot/loader/entries/arch.conf"
 echo ""
 
