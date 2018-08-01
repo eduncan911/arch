@@ -6,12 +6,15 @@
 if [ $# -eq 0 ]; then
     echo "Usage:"
     echo "  20-partition.sh /dev/sda"
+    echo ""
+    echo "Use 'lsblk' or 'fdisk -l' to find the disk."
+    echo ""
     exit 2
 fi
 
 DISK="$1"
-BOOT="${DISK}1"
-ROOT="${DISK}2"
+BOOT="${DISK}p1"
+ROOT="${DISK}p2"
 
 echo "partitioning $DISK"
 parted --script $DISK \
