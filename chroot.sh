@@ -2,12 +2,13 @@
 
 if [ $# -eq 0 ]; then
     echo "Usage:"
-    echo "  chroot.sh HOST_NAME STATIC_IP"
+    echo "  chroot.sh NETWORK_DEVICE HOST_NAME STATIC_IP"
     exit 3
 fi
 
-HOST_NAME=$1
-STATIC_IP=$2
+NETWORK_DEVICE=$1
+HOST_NAME=$2
+STATIC_IP=$3
 
 echo "\ninstalling additional packages"
 pacman -S git openssh curl wget htop
@@ -35,31 +36,12 @@ echo "\nset a root password"
 passwd
 
 echo "\nconfigure networking"
-cat > /etc/systemd/network/20-wired.network << EOF
+cat > /etc/systemd/network/20-primary.network << EOF
 [Match]
-Name=enp1s0
+Name=${NETWORK_DEVICE}
 
 #[DHCP]
 #RouteMetric=10
-
-#[Route]
-#Gateway=10.1.88.1
-#Metric=10
-
-#[Address]
-#Address=10.1.88.9/24
-
-#[Network]
-#DNS=10.1.88.1
-DHCP=ipv4
-EOF
-
-cat > /etc/systemd/network/25-wireless.network << EOF
-[Match]
-Name=wan1s0
-
-[DHCP]
-RouteMetric=20
 
 #[Route]
 #Gateway=10.1.88.1

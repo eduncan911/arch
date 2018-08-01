@@ -7,17 +7,18 @@
 
 if [ $# -eq 0 ]; then
     echo "Usage:"
-    echo "  40-chroot.sh HOST_NAME STATIC_IP"
+    echo "  40-chroot.sh NETWORK_DEVICE HOST_NAME STATIC_IP"
     echo ""
     echo "If using DHCP, set STATIC_IP to 127.0.1.1"
     exit 4
 fi
 
-HOST_NAME=$1
-STATIC_IP=$2
+NETWORK_DEVICE=$1
+HOST_NAME=$2
+STATIC_IP=$3
 
 echo "running chroot"
-arch-chroot /mnt ./chroot.sh ${HOST_NAME} ${STATIC_IP}
+arch-chroot /mnt ./chroot.sh ${NETWORK_DEVICE} ${HOST_NAME} ${STATIC_IP}
 
 echo ""
 echo "A basic Arch Linux installation is complete. Before rebooting, you may"
