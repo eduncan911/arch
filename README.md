@@ -33,7 +33,10 @@ Feel free to fork it and tweak the settings to your taste.
 
 How to Run and pull-down all scripts:
 
-   wget -O - https://raw.githubusercontent.com/eduncan911/arch-setup/master/10-1stboot.sh | sh
+   wget -O master.zip https://github.com/eduncan911/arch-setup/archive/master.zip
+   gunzip -d master.zip
+   ./10-1stboot.sh 
+   ...
 
 
 
