@@ -11,7 +11,7 @@ HOST_NAME=$2
 STATIC_IP=$3
 
 echo "installing additional packages"
-pacman -S git openssh curl wget htop
+pacman -Sy git openssh curl wget htop
 
 echo "setting timezone"
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime

@@ -20,6 +20,7 @@ echo "partitioning $DISK"
 parted --script $DISK \
     mklabel gpt \
     mkpart ESP fat32 1MiB 551MiB \
+    set 1 esp on \
     mkpart primary ext4 551MiB 8000MiB
 
 echo "formatting $BOOT as fat32 for /boot"

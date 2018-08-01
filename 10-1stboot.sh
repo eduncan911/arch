@@ -17,3 +17,5 @@ wget -q -O 40-chroot.sh https://raw.githubusercontent.com/eduncan911/arch-setup/
 wget -q -O 50-intel-microcode.sh https://raw.githubusercontent.com/eduncan911/arch-setup/master/50-intel-microcode.sh
 wget -q -O chroot.sh https://raw.githubusercontent.com/eduncan911/arch-setup/master/chroot.sh
 chmod 755 *.sh
+
+echo ""
