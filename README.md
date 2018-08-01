@@ -31,9 +31,9 @@ Feel free to fork it and tweak the settings to your taste.
 
 ## Future Eric
 
-### How to Run
+How to Run and pull-down all scripts:
 
-   wget -O - https://raw.githubusercontent.com/eduncan911/setarch/master/10-1stboot.sh | sh
+   wget -O - https://raw.githubusercontent.com/eduncan911/arch-setup/master/10-1stboot.sh | sh
 
 
 

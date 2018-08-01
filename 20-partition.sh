@@ -19,8 +19,8 @@ ROOT="${DISK}p2"
 echo "partitioning $DISK"
 parted --script $DISK \
     mklabel gpt \
-    mkpart primary 1MiB 500MiB \
-    mkpart primary 500MiB 8000MiB
+    mkpart ESP fat32 1MiB 551MiB \
+    mkpart primary ext4 551MiB 8000MiB
 
 echo "formatting $BOOT as fat32 for /boot"
 mkfs.fat -F32 $BOOT
