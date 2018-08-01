@@ -10,21 +10,21 @@ NETWORK_DEVICE=$1
 HOST_NAME=$2
 STATIC_IP=$3
 
-echo "\ninstalling additional packages"
+echo "installing additional packages"
 pacman -S git openssh curl wget htop
 
-echo "\nsetting timezone"
+echo "setting timezone"
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
-echo "\nupdate hwclock"
+echo "update hwclock"
 hwclock --systohc
 
-echo "\nsetting localization"
+echo "setting localization"
 sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-echo "\nsetting hostname to ${HOST_NAME} for ${STATIC_IP}"
+echo "setting hostname to ${HOST_NAME} for ${STATIC_IP}"
 echo "${HOST_NAME}" > /etc/hostname
 cat > /etc/hosts << EOF
 127.0.0.1  localhost
@@ -32,10 +32,10 @@ cat > /etc/hosts << EOF
 ${STATIC_IP}  ${HOST_NAME}.loghome ${HOST_NAME}
 EOF
 
-echo "\nset a root password"
+echo "set a root password"
 passwd
 
-echo "\nconfigure networking"
+echo "configure networking"
 cat > /etc/systemd/network/20-primary.network << EOF
 [Match]
 Name=${NETWORK_DEVICE}
@@ -44,18 +44,19 @@ Name=${NETWORK_DEVICE}
 #RouteMetric=10
 
 #[Route]
-#Gateway=10.1.88.1
+#Gateway=10.88.88.1
 #Metric=10
 
 #[Address]
-#Address=10.1.88.9/24
+#Address=${STATIC_IP}/24
 
 #[Network]
-#DNS=10.1.88.1
+#DNS=10.88.88.1
 DHCP=ipv4
 EOF
 
 systemctl enable systemd-networkd.service
 
-echo "\ninstalling bootloader"
+echo "installing bootloader"
 bootctl --path=/boot install
+
