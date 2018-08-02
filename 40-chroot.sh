@@ -23,11 +23,12 @@ STATIC_IP=$3
 echo "running chroot"
 cp ./chroot.sh /mnt
 arch-chroot /mnt ./chroot.sh ${NETWORK_DEVICE} ${HOST_NAME} ${STATIC_IP}
+rm /mnt/chroot.sh
 
 echo "configuring bootloader entries"
-mkdir -p /boot/loader /boot/loader/entries
+mkdir -p /mnt/boot/loader /mnt/boot/loader/entries
 
-cat > /boot/loader/loader.conf << EOF
+cat > /mnt/boot/loader/loader.conf << EOF
 default  arch
 timeout  2
 editor   no
