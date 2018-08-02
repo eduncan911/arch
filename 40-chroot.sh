@@ -24,6 +24,34 @@ echo "running chroot"
 cp ./chroot.sh /mnt
 arch-chroot /mnt ./chroot.sh ${NETWORK_DEVICE} ${HOST_NAME} ${STATIC_IP}
 
+echo "configuring bootloader entries"
+mkdir -p /boot/loader /boot/loader/entries
+
+cat > /boot/loader/loader.conf << EOF
+default  arch
+timeout  2
+editor   no
+EOF
+
+BOOT_DISK=`lsblk -l -o NAME,MOUNTPOINT | egrep "/mnt$" | cut -f 1 -d " "`
+BOOT_UUID=`ls -l /dev/disk/by-partuuid/ | grep ${BOOT_DISK} | aws '{print $9}'`
+
+cat > /mnt/boot/loader/entries/arch.conf << EOF
+title   Arch Linux
+linux   /vmlinuz-linux
+#initrd  /intel-ucode.img
+initrd  /initramfs-linux.img
+options root=PARTUUID=${BOOT_UUID} rootfstype=ext4 rw add_efi_memmap
+EOF
+
+cat > /mnt/boot/loader/entries/arch-recovery.conf << EOF
+title   Arch Linux (Recovery)
+linux   /vmlinuz-linux
+#initrd  /intel-ucode.img
+initrd  /initramfs-linux.img
+options root=PARTUUID=${BOOT_UUID} rootfstype=ext4 rw add_efi_memmap init=/bin/sh
+EOF
+
 echo ""
 echo "A basic Arch Linux installation is complete. Before rebooting, you may"
 echo "want to re-configure a few things such as networking."

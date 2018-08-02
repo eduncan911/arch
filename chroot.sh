@@ -59,23 +59,6 @@ systemctl enable systemd-networkd.service
 
 echo "installing bootloader"
 bootctl --path=/boot install
-mkdir -p /boot/loader /boot/loader/entries
-
-cat > /boot/loader/loader.conf << EOF
-default  arch
-timeout  2
-editor   no
-EOF
-
-BOOT_UUID=`findmnt / -o UUID -n`
-
-cat > /boot/loader/entries/arch.conf << EOF
-title   Arch Linux
-linux   /vmlinuz-linux
-#initrd  /intel-ucode.img
-initrd  /initramfs-linux.img
-options root=PARTUUID=${BOOT_UUID} add_efi_memmap rw
-EOF
 
 echo ""
 echo "completed chroot"
