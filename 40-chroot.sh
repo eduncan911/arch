@@ -34,7 +34,7 @@ editor   no
 EOF
 
 BOOT_DISK=`lsblk -l -o NAME,MOUNTPOINT | egrep "/mnt$" | cut -f 1 -d " "`
-BOOT_UUID=`ls -l /dev/disk/by-partuuid/ | grep ${BOOT_DISK} | aws '{print $9}'`
+BOOT_UUID=`ls -l /dev/disk/by-partuuid/ | grep ${BOOT_DISK} | awk '{print $9}'`
 
 cat > /mnt/boot/loader/entries/arch.conf << EOF
 title   Arch Linux
