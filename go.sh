@@ -16,8 +16,6 @@ echo -n "${AUSER} password: "
 read PASSWD_USER
 [ "${PASSWD_USER}" == "" ] && echo "Entry required, aborting ..." && exit 14
 
-exit 999
-
 #   Usage:
 #       ./go.sh
 # 
