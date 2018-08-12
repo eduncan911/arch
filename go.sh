@@ -25,11 +25,10 @@ echo "######################################"
 #wget -q -O 50-intel-microcode.sh https://raw.githubusercontent.com/eduncan911/arch-setup/master/50-intel-microcode.sh
 #wget -q -O chroot.sh https://raw.githubusercontent.com/eduncan911/arch-setup/master/chroot.sh
 #chmod 755 *.sh
+rm -rf arch-master*
 pacman --noconfirm -Sy unzip
 wget -qO arch-master.zip https://github.com/eduncan911/arch/archive/master.zip
 unzip arch-master.zip
-
-rm -rf arch-master*
 cd arch-master
 scripts/10-1stboot.sh && \
 scripts/20-partition.sh ${DISK} ${PART_PREFIX} && \
