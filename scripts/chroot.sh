@@ -14,7 +14,7 @@ NETWORK_DEVICES="$3"
 echo "######################################"
 echo "## pacman -Sy sudo git openssh curl wget htop tree vim"
 echo "######################################"
-pacman --noconfirm -Sy sudo git openssh curl wget htop tree vim
+pacman --noconfirm -Syu sudo git openssh curl wget htop tree vim
 
 echo "######################################"
 echo "## localization for America/New_York UTF8"

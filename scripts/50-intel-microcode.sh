@@ -6,7 +6,7 @@
 echo "######################################"
 echo "## arch-chroot /mnt pacman --noconfirm -Sy intel-ucode"
 echo "######################################"
-arch-chroot /mnt pacman -S intel-ucode
+arch-chroot /mnt pacman -Sy intel-ucode
 
 echo "#################################################################"
 echo "## REMEMBER: Uncomment Intel parts in /boot/loader/entries/*.conf"
