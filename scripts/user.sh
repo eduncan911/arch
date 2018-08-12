@@ -18,3 +18,8 @@ echo "######################################"
 echo "## passwd ${AUSER}"
 echo "######################################"
 echo "${AUSER}:${PASSWD_USER}" | chpasswd
+
+echo "######################################"
+echo "## gpasswd --add ${AUSER} wheel"
+echo "######################################"
+gpasswd --add "${AUSER}" wheel

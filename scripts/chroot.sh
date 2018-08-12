@@ -80,3 +80,8 @@ echo "######################################"
 echo "## passwd root"
 echo "######################################"
 echo "root:${PASSWD_ROOT}" | chpasswd
+
+echo "######################################"
+echo "## sudoers for wheel"
+echo "######################################"
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
