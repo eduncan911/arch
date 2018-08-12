@@ -31,7 +31,7 @@ unzip arch-master.zip
 
 cd arch-master
 scripts/10-1stboot.sh && \
-scripts/20-partition.sh $(DISK) $(PART_PREFIX) && \
+scripts/20-partition.sh ${DISK} ${PART_PREFIX} && \
 scripts/30-bootstrap.sh && \
-scripts/40-chroot.sh $(HOST_NAME) && \
-scripts/60-user.sh $(USER)
+scripts/40-chroot.sh ${HOST_NAME} && \
+scripts/60-user.sh ${USER}
