@@ -29,7 +29,9 @@ Feel free to fork it and tweak the settings to your taste.
 
 Quickstart:
 
-    wget -q https://github.com/eduncan911/arch/archive/master.zip
-    pacman --noconfirm -Syu unzip
-    unzip master.zip
-    cd arch-master/
+    wget -q https://raw.githubusercontent.com/eduncan911/arch/master/go.sh
+    DISK=/dev/mmcblk0 PART_PREFIX="p" ./go.sh
+
+Or, to use defaults:
+
+    wget -qO - https://raw.githubusercontent.com/eduncan911/arch/master/go.sh | sh
