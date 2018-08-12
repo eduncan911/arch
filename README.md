@@ -31,7 +31,3 @@ Quickstart:
 
     wget -q https://raw.githubusercontent.com/eduncan911/arch/master/go.sh
     DISK=/dev/mmcblk0 PART_PREFIX="p" ./go.sh
-
-Or, to use defaults:
-
-    wget -qO - https://raw.githubusercontent.com/eduncan911/arch/master/go.sh | sh
