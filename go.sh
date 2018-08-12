@@ -10,10 +10,10 @@ echo "######################################"
 echo "## enter passwords"
 echo "######################################"
 echo -n "root password: "
-read PASSWD_ROOT
+read -s PASSWD_ROOT
 [ "${PASSWD_ROOT}" == "" ] && echo "Entry required, aborting ..." && exit 13
 echo -n "${AUSER} password: "
-read PASSWD_USER
+read -s PASSWD_USER
 [ "${PASSWD_USER}" == "" ] && echo "Entry required, aborting ..." && exit 14
 
 #   Usage:
