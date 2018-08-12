@@ -1,10 +1,22 @@
 #!/bin/bash
 
-USER=${USER:="eric"}
+AUSER=${AUSER:="eric"}
 DISK=${DISK:="/dev/sda"}
 PART_PREFIX=${PART_PREFIX:=""}  # mmc == "p"
 HOST_NAME=${HOST_NAME:="dom0"}
 DOMAIN=${DOMAIN:="loghome"}
+
+echo "######################################"
+echo "## enter passwords"
+echo "######################################"
+echo -n "root password: "
+read PASSWD_ROOT
+[ "${PASSWD_ROOT}" == "" ] && echo "Entry required, aborting ..." && exit 13
+echo -n "${AUSER} password: "
+read PASSWD_USER
+[ "${PASSWD_USER}" == "" ] && echo "Entry required, aborting ..." && exit 14
+
+exit 999
 
 #   Usage:
 #       ./go.sh
@@ -31,17 +43,9 @@ pacman --noconfirm -Sy unzip
 wget -qO arch-master.zip https://github.com/eduncan911/arch/archive/master.zip
 unzip arch-master.zip
 
-echo "######################################"
-echo "## enter passwords"
-echo "######################################"
-read -p "root password: " PASSWD_ROOT
-[ "${PASSWD_ROOT}" == "" ] && echo "Entry required, aborting ..." && return 13
-read -p "${USER} password: " PASSWD_USER
-[ "${PASSWD_USER}" == "" ] && echo "Entry required, aborting ..." && return 14
-
 cd arch-master
 scripts/10-1stboot.sh && \
 scripts/20-partition.sh "${DISK}" "${PART_PREFIX}" && \
 scripts/30-bootstrap.sh && \
 scripts/40-chroot.sh "${HOST_NAME}" "${DOMAIN}" "${PASSWD_ROOT}" && \
-scripts/60-user.sh "${USER}" "${PASSWD_USER}"
+scripts/60-user.sh "${AUSER}" "${PASSWD_USER}"

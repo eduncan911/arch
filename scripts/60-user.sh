@@ -7,12 +7,12 @@ if [ $# -ne 2 ]; then
     exit 4
 fi
 
-USER="$1"
+AUSER="$1"
 PASSWD_USER="$2"
 
 echo "######################################"
-echo "## arch-chroot /mnt ./user.sh ${USER} PASS"
+echo "## arch-chroot /mnt ./user.sh ${AUSER} PASS"
 echo "######################################"
 cp scripts/user.sh /mnt
-arch-chroot /mnt ./user.sh "${USER}" "${PASSWD_USER}"
+arch-chroot /mnt ./user.sh "${AUSER}" "${PASSWD_USER}"
 rm /mnt/user.sh

@@ -6,15 +6,15 @@ if [ $# -ne 2 ]; then
     exit 3
 fi
 
-USER="$1"
+AUSER="$1"
 PASSWD_USER="$2"
 
 echo "######################################"
-echo "## useradd -m ${USER}"
+echo "## useradd -m ${AUSER}"
 echo "######################################"
-useradd -m ${USER}
+useradd -m ${AUSER}
 
 echo "######################################"
-echo "## passwd ${USER}"
+echo "## passwd ${AUSER}"
 echo "######################################"
-echo "${USER}:${PASSWD_USER}" | chpasswd
+echo "${AUSER}:${PASSWD_USER}" | chpasswd
