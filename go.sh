@@ -25,7 +25,7 @@ echo "######################################"
 #wget -q -O 50-intel-microcode.sh https://raw.githubusercontent.com/eduncan911/arch-setup/master/50-intel-microcode.sh
 #wget -q -O chroot.sh https://raw.githubusercontent.com/eduncan911/arch-setup/master/chroot.sh
 #chmod 755 *.sh
-pacman --noconfirm -Syu unzip
+pacman --noconfirm -Sy unzip
 wget -qO arch-master.zip https://github.com/eduncan911/arch/archive/master.zip
 unzip arch-master.zip
 
