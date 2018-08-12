@@ -12,9 +12,9 @@ NETWORK_DEVICES="$3"
 [ "${NETWORK_DEVICES}" == "" ] && NETWORK_DEVICES="eth0"
 
 echo "######################################"
-echo "## pacman -Syu sudo git openssh curl wget htop tree vim"
+echo "## pacman -Sy sudo git openssh curl wget htop tree vim"
 echo "######################################"
-pacman --noconfirm -Syu sudo git openssh curl wget htop tree vim
+pacman --noconfirm -Sy sudo git openssh curl wget htop tree vim
 
 echo "######################################"
 echo "## localization for America/New_York UTF8"

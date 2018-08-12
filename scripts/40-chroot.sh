@@ -30,7 +30,7 @@ done
 echo "######################################"
 echo "## arch-chroot /mnt ./chroot.sh ${HOST_NAME} ${DOMAIN} ${NETWORK_DEVICES}"
 echo "######################################"
-cp ./chroot.sh /mnt
+cp scripts/chroot.sh /mnt
 arch-chroot /mnt ./chroot.sh ${HOST_NAME} ${DOMAIN} "${NETWORK_DEVICES}"
 rm /mnt/chroot.sh
 
