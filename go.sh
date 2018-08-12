@@ -29,6 +29,7 @@ pacman --noconfirm -Sy unzip
 wget -qO arch-master.zip https://github.com/eduncan911/arch/archive/master.zip
 unzip arch-master.zip
 
+rm -rf arch-master*
 cd arch-master
 scripts/10-1stboot.sh && \
 scripts/20-partition.sh ${DISK} ${PART_PREFIX} && \
