@@ -4,6 +4,7 @@ USER=${USER:="eric"}
 DISK=${DISK:="/dev/sda"}
 PART_PREFIX=${PART_PREFIX:=""}  # mmc == "p"
 HOST_NAME=${HOST_NAME:="dom0"}
+DOMAIN=${DOMAIN:="loghome"}
 
 #   Usage:
 #       ./go.sh
@@ -33,5 +34,5 @@ cd arch-master
 scripts/10-1stboot.sh && \
 scripts/20-partition.sh ${DISK} ${PART_PREFIX} && \
 scripts/30-bootstrap.sh && \
-scripts/40-chroot.sh ${HOST_NAME} && \
+scripts/40-chroot.sh ${HOST_NAME} ${DOMAIN} && \
 scripts/60-user.sh ${USER}
