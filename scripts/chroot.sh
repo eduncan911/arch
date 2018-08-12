@@ -2,13 +2,14 @@
 
 if [ $# -eq 0 ]; then
     echo "Usage:"
-    echo "  chroot.sh HOST_NAME DOMAIN NETWORK_DEVICES"
+    echo "  chroot.sh HOST_NAME DOMAIN PASS NETWORK_DEVICES"
     exit 3
 fi
 
 HOST_NAME="$1"
 DOMAIN="$2"
-NETWORK_DEVICES="$3"
+PASSWD_ROOT="$3"
+NETWORK_DEVICES="$4"
 [ "${NETWORK_DEVICES}" == "" ] && NETWORK_DEVICES="eth0"
 
 echo "######################################"
@@ -74,3 +75,8 @@ echo "######################################"
 echo "## systemd-boot: bootctl --path=/boot install"
 echo "######################################"
 bootctl --path=/boot install
+
+echo "######################################"
+echo "## passwd root"
+echo "######################################"
+echo "root:${PASSWD_ROOT}" | chpasswd

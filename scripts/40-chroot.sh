@@ -5,15 +5,16 @@
 #
 #   If using DHCP, set STATIC_IP to 127.0.1.1
 
-if [ $# -eq 0 ]; then
+if [ $# -ne 3 ]; then
     echo "Usage:"
-    echo "  40-chroot.sh HOST_NAME DOMAIN"
+    echo "  40-chroot.sh HOST_NAME DOMAIN ROOT_PASSWD"
     echo ""
     exit 4
 fi
 
 HOST_NAME="$1"
 DOMAIN="${2}"
+PASSWD_ROOT="${3}"
 STATIC_IP="127.0.1.1"
 
 NETWORK_DEVICES=""
@@ -28,10 +29,10 @@ for n in `ls /sys/class/net`; do
 done
 
 echo "######################################"
-echo "## arch-chroot /mnt ./chroot.sh ${HOST_NAME} ${DOMAIN} ${NETWORK_DEVICES}"
+echo "## arch-chroot /mnt ./chroot.sh ${HOST_NAME} ${DOMAIN} PASS ${NETWORK_DEVICES}"
 echo "######################################"
 cp scripts/chroot.sh /mnt
-arch-chroot /mnt ./chroot.sh ${HOST_NAME} ${DOMAIN} "${NETWORK_DEVICES}"
+arch-chroot /mnt ./chroot.sh ${HOST_NAME} ${DOMAIN} "${PASSWD_ROOT}" "${NETWORK_DEVICES}"
 rm /mnt/chroot.sh
 
 echo "######################################"

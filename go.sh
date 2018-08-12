@@ -30,9 +30,18 @@ rm -rf arch-master*
 pacman --noconfirm -Sy unzip
 wget -qO arch-master.zip https://github.com/eduncan911/arch/archive/master.zip
 unzip arch-master.zip
+
+echo "######################################"
+echo "## enter passwords"
+echo "######################################"
+read -p "root password: " PASSWD_ROOT
+[ "${PASSWD_ROOT}" == "" ] && echo "Entry required, aborting ..." && return 13
+read -p "${USER} password: " PASSWD_USER
+[ "${PASSWD_USER}" == "" ] && echo "Entry required, aborting ..." && return 14
+
 cd arch-master
 scripts/10-1stboot.sh && \
-scripts/20-partition.sh ${DISK} ${PART_PREFIX} && \
+scripts/20-partition.sh "${DISK}" "${PART_PREFIX}" && \
 scripts/30-bootstrap.sh && \
-scripts/40-chroot.sh ${HOST_NAME} ${DOMAIN} && \
-scripts/60-user.sh ${USER}
+scripts/40-chroot.sh "${HOST_NAME}" "${DOMAIN}" "${PASSWD_ROOT}" && \
+scripts/60-user.sh "${USER}" "${PASSWD_USER}"
