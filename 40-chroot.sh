@@ -42,7 +42,7 @@ title   Arch Linux
 linux   /vmlinuz-linux
 #initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
-options root=${BOOT_DISK} rootfstype=ext4 rw add_efi_memmap
+options root=/dev/${BOOT_DISK} rootfstype=ext4 rw add_efi_memmap
 EOF
 
 cat > /mnt/boot/loader/entries/arch-recovery.conf << EOF
@@ -50,7 +50,7 @@ title   Arch Linux (Recovery)
 linux   /vmlinuz-linux
 #initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
-options root=${BOOT_DISK} rootfstype=ext4 rw add_efi_memmap init=/bin/sh
+options root=/dev/${BOOT_DISK} rootfstype=ext4 rw add_efi_memmap init=/bin/sh
 EOF
 
 echo ""
