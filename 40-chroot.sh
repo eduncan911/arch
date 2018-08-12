@@ -35,14 +35,14 @@ editor   no
 EOF
 
 BOOT_DISK=`lsblk -l -o NAME,MOUNTPOINT | egrep "/mnt$" | cut -f 1 -d " "`
-BOOT_UUID=`ls -l /dev/disk/by-partuuid/ | grep ${BOOT_DISK} | awk '{print $9}'`
+#BOOT_UUID=`ls -l /dev/disk/by-partuuid/ | grep ${BOOT_DISK} | awk '{print $9}'`
 
 cat > /mnt/boot/loader/entries/arch.conf << EOF
 title   Arch Linux
 linux   /vmlinuz-linux
 #initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
-options root=PARTUUID=${BOOT_UUID} rootfstype=ext4 rw add_efi_memmap
+options root=${BOOT_DISK} rootfstype=ext4 rw add_efi_memmap
 EOF
 
 cat > /mnt/boot/loader/entries/arch-recovery.conf << EOF
@@ -50,7 +50,7 @@ title   Arch Linux (Recovery)
 linux   /vmlinuz-linux
 #initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
-options root=PARTUUID=${BOOT_UUID} rootfstype=ext4 rw add_efi_memmap init=/bin/sh
+options root=${BOOT_DISK} rootfstype=ext4 rw add_efi_memmap init=/bin/sh
 EOF
 
 echo ""

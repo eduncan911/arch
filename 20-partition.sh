@@ -13,8 +13,8 @@ if [ $# -eq 0 ]; then
 fi
 
 DISK="$1"
-BOOT="${DISK}p1"
-ROOT="${DISK}p2"
+BOOT="${DISK}1"
+ROOT="${DISK}2"
 
 echo "partitioning $DISK"
 parted --script $DISK \
@@ -24,10 +24,10 @@ parted --script $DISK \
     mkpart primary ext4 551MiB 8000MiB
 
 echo "formatting $BOOT as fat32 for /boot"
-mkfs.fat -F32 $BOOT
+mkfs.fat -n boot -F32 $BOOT
 
 echo "formatting $ROOT as ext4 for /"
-mkfs.ext4 $ROOT
+mkfs.ext4 -L root $ROOT
 
 echo "mounting /mnt as a root"
 mount $ROOT /mnt
